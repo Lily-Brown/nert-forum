@@ -5,5 +5,6 @@ export default DS.Model.extend({
   email: DS.attr('string'),
   neighborhood: DS.attr('string'),
   image: DS.attr('string'),
-  password_digest: DS.attr('string')
+  password_digest: DS.attr('string'),
+  posts: DS.hasMany('post')
 });

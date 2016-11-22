@@ -1,0 +1,19 @@
+<h2>NERT Forum</h2>
+
+{{#each model as |post|}}
+  <div>
+    <h3>{{post.title}}</h3>
+    <div>
+      <p>
+        {{#link-to 'user' post.user}}{{post.user.name}}{{/link-to}}: {{post.user.neighborhood}}<br>
+        {{post.created_at}}
+      </p>
+    </div>
+    <div>
+      <p>
+        {{post.text_body}}
+        {{#link-to 'post' post}}Read more{{/link-to}}
+      </p>
+    </div>
+  </div>
+{{/each}}
