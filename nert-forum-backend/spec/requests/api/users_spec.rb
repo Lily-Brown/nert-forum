@@ -15,7 +15,7 @@ describe "User API Tests" do
   it "user#create: POST /users should return 201" do 
     post "/users", params: {
       user: {
-        email: "test@test.com",
+        email: "test1@test.com",
         name: "Test",
         password: "password"
       }
