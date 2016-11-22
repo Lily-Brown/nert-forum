@@ -16,10 +16,10 @@ See this project live [LINK HERE](#)
 - Javascript
 - JQuery
 - [Rspec](https://github.com/rspec/rspec-rails)
-- [Devise](https://github.com/plataformatec/devise) for Auth
+- [Active-Model-Serializers](https://github.com/rails-api/active_model_serializers)
 - [Materialize](http://materializecss.com)
-- [Paperclip](https://github.com/thoughtbot/paperclip)
 - [[Possibilities for Stretch]]
+  - [Paperclip](https://github.com/thoughtbot/paperclip)
   - [Friendly ID](https://github.com/norman/friendly_id)
 
 ### Installation
