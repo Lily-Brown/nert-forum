@@ -1,0 +1,25 @@
+{{#if isEditing}} 
+  <div>
+    <p>
+      Name: {{input value=model.name}}<br>
+      Image URL: {{input value=model.image}}<br>
+      Neighborhood: {{input value=model.neighborhood}}<br>
+      E-mail: {{input value=model.email}}<br>
+    </p>
+  </div>
+  <div>
+    <button {{action 'save'}}>Save</button>
+  </div>
+{{else}}
+  <div>
+    <p>
+      <h1>{{model.name}}</h1>
+      <img src={{model.image}}><br>
+      Neighborhood: {{model.neighborhood}}<br>
+      E-mail: {{model.email}}<br>
+    </p>
+  </div>
+  <div>
+    <button {{action 'edit'}}>Edit</button>
+  </div>
+{{/if}}
