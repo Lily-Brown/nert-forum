@@ -6,12 +6,12 @@
     <div>
       <p>
         {{#link-to 'user' post.user}}{{post.user.name}}{{/link-to}}: {{post.user.neighborhood}}<br>
-        {{post.created_at}}
+        {{post.createdAt}}
       </p>
     </div>
     <div>
       <p>
-        {{post.text_body}}
+        {{post.textBody}}
         {{#link-to 'post' post}}Read more{{/link-to}}
       </p>
     </div>

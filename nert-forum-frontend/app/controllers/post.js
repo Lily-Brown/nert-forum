@@ -14,6 +14,13 @@ export default Ember.Controller.extend({
       this.get('model').destroyRecord().then(() => {
         this.transitionToRoute('posts');
       });
+    },
+    addComment() { // TODO: Make this work
+      this.get('store').createRecord('comment', {
+          textBody: this.get('newComment'),
+          user: this.get('model.user'),
+          post: this.get('model')
+        }).save();
     }
   }
 });
