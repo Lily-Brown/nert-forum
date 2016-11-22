@@ -1,7 +1,10 @@
-<h2>List of Posts</h2>
+<h2>NERT Forum</h2>
 
-<ul>
-  {{#each model as |post|}}
-    <li>{{#link-to 'post' post}}{{post.title}}{{/link-to}}</li> 
-  {{/each}}
-</ul>
+{{#each model as |post|}}
+  <div>
+    <h3>{{post.title}}</h3>
+    {{post.user}}
+    {{post.text_body}}
+    {{#link-to 'post' post}}Read more{{/link-to}}
+  </div>
+{{/each}}
