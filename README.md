@@ -44,4 +44,4 @@ See this project live [LINK HERE](#)
 
 ### Process
 
-See: [Planning_Deliverables](https://github.com/LilyCole/nert_forum/blob/master/Planning%20Deliverables.md) for Wireframes, User Stories, Sprints
+See: [Planning_Deliverables](https://github.com/LilyCole/nert-forum/blob/master/Planning%20Deliverables.md) for Wireframes, User Stories, Sprints
