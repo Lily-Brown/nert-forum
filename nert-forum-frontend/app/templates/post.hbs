@@ -1,26 +1,51 @@
 {{#if isEditing}} 
+
   <div>
     <p>
       Title: {{input value=model.title}}<br>
-      Post Body: {{textarea value=model.text_body}}<br>
+      Post Body: {{textarea value=model.textBody}}<br>
     </p>
   </div>
   <div>
     <button {{action 'save'}}>Save</button>
   </div>
+
 {{else}}
+
   <div>
     <p>
       <h1>{{model.title}}</h1>
-      {{#link-to 'user' model.user}}{{model.user.name}}{{/link-to}}: {{model .user.neighborhood}}<br>
+      {{#link-to 'user' model.user}}{{model.user.name}}{{/link-to}}: {{model.user.neighborhood}}<br>
       {{model.created_at}}
     </p>
     <p>
-      {{model.text_body}}<br>
+      {{model.textBody}}<br>
     </p>
   </div>
   <div>
     <button {{action 'edit'}}>Edit</button>
     <button {{action 'delete'}}>Delete</button>
   </div>
+
+  {{#each model.comments as |comment|}}
+    <div>
+      <p>
+        {{#link-to 'user' comment.user}}{{comment.user.name}}{{/link-to}}: {{comment.user.neighborhood}}<br>
+        {{comment.created_at}}
+      </p>
+      <p>
+        {{comment.textBody}}<br>
+      </p>
+    </div>
+  {{/each}}
+
+  <div>
+    <p>
+      {{textarea value=newComment}}
+    </p>
+    <p>
+      <button {{action 'addComment'}}>Add Comment</button>
+    </p>
+  </div>
+
 {{/if}}
