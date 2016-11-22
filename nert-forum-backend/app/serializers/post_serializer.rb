@@ -1,3 +1,4 @@
 class PostSerializer < ActiveModel::Serializer
-  attributes :id, :title, :text_body, :owner, :created_at, :updated_at
+  attributes :id, :title, :text_body, :created_at, :updated_at
+  belongs_to :user
 end
