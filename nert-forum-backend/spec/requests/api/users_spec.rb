@@ -14,10 +14,12 @@ describe "User API Tests" do
 
   it "user#create: POST /users should return 201" do 
     post "/users", params: {
-      user: {
-        email: "test1@test.com",
-        name: "Test",
-        password: "password"
+      data: {
+        attributes: {
+          email: "test1@test.com",
+          name: "Test",
+          password: "password"
+        }
       }
     }
 
@@ -26,9 +28,11 @@ describe "User API Tests" do
 
   it "user#create: POST /users should return 400 for bad request" do
     post "/users", params: {
-      user: {
-        email: "test@test.com",
-        name: "Test"
+      data: {
+        attributes: {
+          email: "test@test.com",
+          name: "Test"
+        }
       }
     }
 
@@ -44,10 +48,12 @@ describe "User API Tests" do
   it "user#update: PUT /users/:id/ should return 204" do
 
     put "/users/#{@user.id}", params: {
-      user: {
-        email: "test@test.com",
-        name: "Test",
-        password: "password"
+      data: {
+        attributes: {
+          email: "test@test.com",
+          name: "Test",
+          password: "password"
+        }
       }
     }
 
