@@ -39,7 +39,7 @@ class PostsController < ApplicationController
   def destroy
     post = Post.find(params[:id])
     if post.destroy
-      render :json => {success: "Post deleted successfully"}, status: 200
+      render :json => {success: "Post deleted successfully"}, status: 204
     else
       render :json => {error: "Post deletion failed"}, status: 400
     end

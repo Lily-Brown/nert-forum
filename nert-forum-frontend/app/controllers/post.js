@@ -9,6 +9,11 @@ export default Ember.Controller.extend({
       this.get('model').save().then(() => {
         this.toggleProperty('isEditing');
       });
+    },
+    delete() {
+      this.get('model').destroyRecord().then(() => {
+        this.transitionToRoute('posts');
+      });
     }
   }
 });

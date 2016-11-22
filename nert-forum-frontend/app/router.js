@@ -7,6 +7,7 @@ const Router = Ember.Router.extend({
 });
 
 Router.map(function() {
+  this.route('root', { path: '/posts' }); // TODO: Figure out how to set root path
   this.route('users');
   this.route('user', { path: '/users/:user_id' });
   this.route('posts');
