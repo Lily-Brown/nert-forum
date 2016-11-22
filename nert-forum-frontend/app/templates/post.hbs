@@ -12,6 +12,10 @@
   <div>
     <p>
       <h1>{{model.title}}</h1>
+      {{#link-to 'user' model.user}}{{model.user.name}}{{/link-to}}: {{model .user.neighborhood}}<br>
+      {{model.created_at}}
+    </p>
+    <p>
       {{model.text_body}}<br>
     </p>
   </div>
