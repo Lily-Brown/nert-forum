@@ -59,11 +59,11 @@ describe "Post API Tests" do
     expect(response).to have_http_status(204)
   end
 
-  it "post#destroy: DELETE /posts/:id should return 200" do
+  it "post#destroy: DELETE /posts/:id should return 204" do
 
     delete "/posts/#{@post.id}"
 
-    expect(response).to have_http_status(200)
+    expect(response).to have_http_status(204)
   end
   
 end
