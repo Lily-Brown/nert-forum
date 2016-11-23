@@ -48,7 +48,7 @@ class CommentsController < ApplicationController
   private
 
   def comment_params
-    params.require(:data).require(:attributes).permit(:text_body, :user_id, :post_id)
+    ActiveModelSerializers::Deserialization.jsonapi_parse(params, only: %w(text-body user post))
   end
 
 end

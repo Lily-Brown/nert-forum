@@ -48,7 +48,9 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:data).require(:attributes).permit(:title, :text_body, :user_id)
+    ActiveModelSerializers::Deserialization.jsonapi_parse(params, only: %w(title text-body user))
   end
+
+
 
 end
