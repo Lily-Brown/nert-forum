@@ -1,7 +1,7 @@
-<h2>List of Users</h2>
+<h2>Volunteers</h2>
 
-<ul>
-  {{#each model as |user|}}
-    <li>{{user.name}}</li>
-  {{/each}}
-</ul>
+{{#each model as |user|}}
+  <div>
+    <p>{{#link-to 'user' user}}{{user.name}}{{/link-to}}</p>
+  </div>
+{{/each}}
