@@ -43,6 +43,7 @@ ActiveRecord::Schema.define(version: 20161123045004) do
     t.string   "password_digest"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+    t.string   "auth_key"
   end
 
   add_foreign_key "comments", "posts"
