@@ -5,7 +5,7 @@ export default Ember.Controller.extend({
   actions: {
     login() { 
       this.get('model').save().then(
-        function() {
+        () => {
           var currentService = this.get('current');
           var user = this.get('model.user');
           var authKey = this.get('model.authKey');

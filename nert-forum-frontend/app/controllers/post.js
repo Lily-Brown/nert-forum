@@ -15,7 +15,7 @@ export default Ember.Controller.extend({
         this.transitionToRoute('posts');
       });
     },
-    addComment() { // TODO: Make this work
+    addComment() { 
       this.get('store').createRecord('comment', {
           textBody: this.get('newComment'),
           user: this.get('model.user'),
