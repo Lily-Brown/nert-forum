@@ -1,0 +1,12 @@
+  <div>
+    <h1>Create An Account</h1>
+    <p>
+      Name: {{input value=model.name}}<br>
+      Email: {{input type='email' value=model.email}}<br>
+      Password: {{input type='password' value=model.password}}<br>
+      Password Confirmation: {{input type='password' value=model.passwordConfirmation}}<br>
+    </p>
+  </div>
+  <div>
+    <button {{action 'addUser'}}>Add Volunteer</button>
+  </div>
