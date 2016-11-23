@@ -48,7 +48,7 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    ActiveModelSerializers::Deserialization.jsonapi_parse(params, only: [:title, :text_body, :user_id])
+    ActiveModelSerializers::Deserialization.jsonapi_parse(params, only: %w(title text-body user))
   end
 
 
