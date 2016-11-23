@@ -29,7 +29,7 @@ class UsersController < ApplicationController
   def update
     user = User.find(params[:id])
 
-    if user.update_attributes(user_params)
+    if user.update_attributes(update_user_params)
       render :json => {success: "User updated successfully"}, status: 204
     else
       render :json => {error: "Failed to update User"}, status: 400
@@ -48,8 +48,11 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:data).require(:attributes).permit(:name, :email, :neighborhood, :image, :password)
-    # params.require(:user).permit(:name, :email, :neighborhood, :image, :password)
+    ActiveModelSerializers::Deserialization.jsonapi_parse(params, only: %w(name email neighborhood image password))
+  end
+
+  def update_user_params
+    user_params.except(:password)
   end
 
 end
