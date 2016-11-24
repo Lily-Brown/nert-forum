@@ -15,6 +15,8 @@ export default Ember.Controller.extend({
             user: currentUser
           }).save().then(() => {
               this.set('isEditing', false);
+              this.set('postTitle','');
+              this.set('postTextBody','');
             },
             () => {
               alert('Changes have not been saved.');

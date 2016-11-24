@@ -20,7 +20,12 @@ export default Ember.Controller.extend({
           textBody: this.get('newComment'),
           user: this.get('model.user'),
           post: this.get('model')
-        }).save();
+        }).save()then(() => {
+              this.set('newComment','');
+            },
+            () => {
+              alert('Changes have not been saved.');
+            });
     }
   }
 });
