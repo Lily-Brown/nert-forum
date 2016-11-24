@@ -5,7 +5,7 @@ export default Ember.Controller.extend({
     addUser() { 
       if (this.get('model.password') === this.get('passwordConfirmation')) {
         this.get('model').save().then(
-          function() {
+          () => {
             this.transitionToRoute('users');
           });
       } else {

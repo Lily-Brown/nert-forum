@@ -2,20 +2,34 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({
   current: Ember.inject.service(),
+  currentUser: function() {
+    return this.get('current.user');
+  },
+  isCurrentUser: function() {
+    return (this.get('model.data') === this.get('current.user.data'))
+  }.property('isCurrentUser'),
   actions: {
     edit() {
       this.set('isEditing', true);
     },
     save() {
       var user = this.get('model');
-      user.save().then(
-        () => {
-          this.set('isEditing', false);
-        },
-        (response) => {
-          console.log(response.errors[0].detail)
-          this.set('current.flash', 'Your changes were not saved.'); // TODO: Fix flash
-        });
+      if (this.currentUser()) {
+        if (this.isCurrentUser()) {
+          user.save().then(
+            () => {
+              this.set('isEditing', false);
+            },
+            (response) => {
+              alert('Your changes were not saved.'); // TODO: Fix flash
+            });
+        } else {
+          this.transitionToRoute('user', this.currentUser()); // TODO: Fix transition?
+          alert('You are not authorized to edit this User.');
+        }
+      } else {
+        this.transitionToRoute('login');
+      }
     }
   }
 });

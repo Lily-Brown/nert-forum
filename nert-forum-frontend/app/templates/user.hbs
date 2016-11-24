@@ -18,7 +18,9 @@
       E-mail: {{model.email}}<br>
     </p>
   </div>
-  <div>
-    <button {{action 'edit'}}>Edit</button>
-  </div>
+  {{#if isCurrentUser}}
+    <div>
+      <button {{action 'edit'}}>Edit</button>
+    </div>
+  {{/if}}
 {{/if}}

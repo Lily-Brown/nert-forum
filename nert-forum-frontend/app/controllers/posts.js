@@ -7,11 +7,23 @@ export default Ember.Controller.extend({
       this.set('isEditing', true);
     },
     save() {
-      this.get('store').createRecord('post', {
-          title: this.get('postTitle'),
-          textBody: this.get('postTextBody'),
-          user: this.get('current.user')
-        }).save();
+      var currentUser = this.get('current.user');
+      if (currentUser) {
+        this.get('store').createRecord('post', {
+            title: this.get('postTitle'),
+            textBody: this.get('postTextBody'),
+            user: currentUser
+          }).save().then(() => {
+              this.set('isEditing', false);
+              this.set('postTitle','');
+              this.set('postTextBody','');
+            },
+            () => {
+              alert('Changes have not been saved.');
+            });
+      } else {
+        this.transitionToRoute('login');
+      }
     }
   }
 });
