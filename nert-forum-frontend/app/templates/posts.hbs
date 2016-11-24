@@ -1,5 +1,20 @@
 <h2>NERT Forum</h2>
 
+{{#if isEditing}}
+
+  <div>
+    Post Title: {{input value=postTitle}}<br>
+    Post Body: {{input type='textarea' value=postTextBody}}<br>
+  </div>
+
+  <button {{action 'save'}}>Save</button>
+
+{{else}}
+
+  <button {{action 'addPost'}}>Add New Post</button>
+
+{{/if}}
+
 {{#each model as |post|}}
   <div>
     <h3>{{post.title}}</h3>
