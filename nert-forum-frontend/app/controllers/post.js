@@ -1,6 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
+  current: Ember.inject.service(),
   actions: {
     edit() {
       this.toggleProperty('isEditing');
@@ -16,16 +17,21 @@ export default Ember.Controller.extend({
       });
     },
     addComment() { 
-      this.get('store').createRecord('comment', {
-          textBody: this.get('newComment'),
-          user: this.get('model.user'),
-          post: this.get('model')
-        }).save()then(() => {
-              this.set('newComment','');
-            },
-            () => {
-              alert('Changes have not been saved.');
-            });
+      var currentUser = this.get('current.user');
+      if (currentUser) {
+        this.get('store').createRecord('comment', {
+            textBody: this.get('newComment'),
+            user: currentUser,
+            post: this.get('model')
+          }).save().then(() => {
+                this.set('newComment','');
+              },
+              () => {
+                alert('Changes have not been saved.');
+              });
+      } else {
+        this.transitionToRoute('login');
+      }
     }
   }
 });
