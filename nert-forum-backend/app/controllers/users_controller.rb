@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :get_user, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate, only: [:edit, :update, :destroy]
 
   def index
     render :json => User.all, status: 200
@@ -46,11 +47,26 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    ActiveModelSerializers::Deserialization.jsonapi_parse(params, only: %w(name email neighborhood image password))
+    ActiveModelSerializers::Deserialization.jsonapi_parse(params, only: %w(name email neighborhood image password auth_key))
   end
 
   def update_user_params
     user_params.except(:password)
+  end
+
+  def authenticate
+    authenticate_token || render_unauthorized
+  end
+
+  def authenticate_token
+    authenticate_with_http_token do |token, options|
+      User.find_by(auth_key: token)
+    end
+  end
+
+  def render_unauthorized
+    self.headers['WWW-Authenticate'] = 'Token realm="Application"'
+    render json: 'You need to be logged in.', status: 401
   end
 
 end
