@@ -22,7 +22,7 @@ export default Ember.Controller.extend({
             this.toggleProperty('isEditing');
           });
         } else {
-          alert('You are not authorized to edit this User.');
+          alert('You are not authorized to edit this Post.');
         }
       } else {
         this.transitionToRoute('login');
