@@ -1,5 +1,5 @@
 class Post < ApplicationRecord
-  belongs_to :user
+  belongs_to :user, :dependent => :delete
   alias_method :owner, :user
 
   has_many :comments
