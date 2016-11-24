@@ -5,6 +5,9 @@ export default Ember.Controller.extend({
   currentUser: function() {
     return this.get('current.user');
   },
+  isCurrentUser: function() {
+    return (this.get('model.data') === this.get('current.user.data'))
+  }.property('isCurrentUser'),
   actions: {
     edit() {
       this.set('isEditing', true);
@@ -12,7 +15,7 @@ export default Ember.Controller.extend({
     save() {
       var user = this.get('model');
       if (this.currentUser()) {
-        if (this.get('model.data') === this.get('current.user.data')) {
+        if (this.isCurrentUser()) {
           user.save().then(
             () => {
               this.set('isEditing', false);
