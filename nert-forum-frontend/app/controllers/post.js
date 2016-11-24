@@ -2,26 +2,36 @@ import Ember from 'ember';
 
 export default Ember.Controller.extend({
   current: Ember.inject.service(),
+  currentUser: function() {
+      return this.get('current.user');
+    },
   actions: {
     edit() {
       this.toggleProperty('isEditing');
     },
     save() {
-      this.get('model').save().then(() => {
-        this.toggleProperty('isEditing');
-      });
+      if (this.currentUser()) {
+        this.get('model').save().then(() => {
+          this.toggleProperty('isEditing');
+        });
+      } else {
+        this.transitionToRoute('login');
+      }
     },
     delete() {
-      this.get('model').destroyRecord().then(() => {
-        this.transitionToRoute('posts');
-      });
+      if (this.currentUser()) {
+        this.get('model').destroyRecord().then(() => {
+          this.transitionToRoute('posts');
+        });
+      } else {
+        this.transitionToRoute('login');
+      }
     },
     addComment() { 
-      var currentUser = this.get('current.user');
-      if (currentUser) {
+      if (this.currentUser()) {
         this.get('store').createRecord('comment', {
             textBody: this.get('newComment'),
-            user: currentUser,
+            user: this.currentUser(),
             post: this.get('model')
           }).save().then(() => {
                 this.set('newComment','');

@@ -8,14 +8,19 @@ export default Ember.Controller.extend({
     },
     save() {
       var user = this.get('model');
-      user.save().then(
-        () => {
-          this.set('isEditing', false);
-        },
-        (response) => {
-          console.log(response.errors[0].detail)
-          this.set('current.flash', 'Your changes were not saved.'); // TODO: Fix flash
-        });
+      var currentUser = this.get('current.user');
+      if (currentUser) {
+        user.save().then(
+          () => {
+            this.set('isEditing', false);
+          },
+          (response) => {
+            console.log(response.errors[0].detail)
+            this.set('current.flash', 'Your changes were not saved.'); // TODO: Fix flash
+          });
+      } else {
+        this.transitionToRoute('login');
+      }
     }
   }
 });
