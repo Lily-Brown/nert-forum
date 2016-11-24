@@ -12,7 +12,7 @@ class UsersController < ApplicationController
     if @user.valid?
       render :json => @user, status: 201
     else
-      render :json => {error: "User validation failed"}, status: 400
+      render :json => "User validation failed", status: 400
     end
   end
 
@@ -26,17 +26,17 @@ class UsersController < ApplicationController
 
   def update
     if @user.update_attributes(update_user_params)
-      render :json => {success: "User updated successfully"}, status: 204
+      render :json => "User updated successfully", status: 204
     else
-      render :json => {error: "Failed to update User"}, status: 400
+      render :json => "Failed to update User", status: 400
     end
   end
 
   def destroy
     if @user.destroy
-      render :json => {success: "User deleted successfully"}, status: 200
+      render :json => "User deleted successfully", status: 200
     else
-      render :json => {error: "User deletion failed"}, status: 400
+      render :json => "User deletion failed", status: 400
     end
   end
 
